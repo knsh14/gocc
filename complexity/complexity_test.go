@@ -38,6 +38,17 @@ func Double(n int) int {
 }`,
 			complexity: 1,
 		},
+		{
+			name: "if statement",
+			code: `package main
+func Double(n int) int {
+	if n%2 == 0 {
+		return 0
+	}
+	return n
+}`,
+			complexity: 2,
+		},
 	}
 
 	for _, testcase := range testcases {
