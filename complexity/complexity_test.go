@@ -49,6 +49,18 @@ func Double(n int) int {
 }`,
 			complexity: 2,
 		},
+		{
+			name: "for statement",
+			code: `package main
+func Sum(n int) int {
+	c := 0
+	for i := 0; i < n; i++ {
+		c += i
+	}
+	return c
+}`,
+			complexity: 2,
+		},
 	}
 
 	for _, testcase := range testcases {

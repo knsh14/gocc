@@ -8,6 +8,8 @@ func Count(funcNode ast.Node) int {
 		switch n.(type) {
 		case *ast.IfStmt:
 			count++
+		case *ast.ForStmt:
+			count++
 		}
 		return true
 	})
