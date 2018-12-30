@@ -4,7 +4,7 @@ import (
 	"go/ast"
 
 	"github.com/knsh14/gocc/complexity"
-	"golang.org/x/tools/go/analysis/"
+	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
 )
