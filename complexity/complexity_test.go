@@ -61,6 +61,41 @@ func Sum(n int) int {
 }`,
 			complexity: 2,
 		},
+		{
+			name: "case clause simple",
+			code: `package main
+func Print(n int) {
+	switch n {
+	case 0:
+		println("zero")
+	}
+}`,
+			complexity: 2,
+		},
+		{
+			name: "case clause default",
+			code: `package main
+func Print(n int) {
+	switch n {
+	case 0:
+		println("zero")
+	default:
+		println("not zero")
+	}
+}`,
+			complexity: 3,
+		},
+		{
+			name: "case clause multi case",
+			code: `package main
+func Print(n int) {
+	switch n {
+	case 0, 1, 2, 3:
+		println("between zero and three")
+	}
+}`,
+			complexity: 5,
+		},
 	}
 
 	for _, testcase := range testcases {
