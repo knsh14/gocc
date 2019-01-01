@@ -1,6 +1,9 @@
 package complexity
 
-import "go/ast"
+import (
+	"go/ast"
+	"go/token"
+)
 
 func Count(funcNode ast.Node) int {
 	count := 1
@@ -16,6 +19,10 @@ func Count(funcNode ast.Node) int {
 				break
 			}
 			count += len(n.List)
+		case *ast.BinaryExpr:
+			if n.Op == token.LAND || n.Op == token.LOR {
+				count++
+			}
 		}
 		return true
 	})

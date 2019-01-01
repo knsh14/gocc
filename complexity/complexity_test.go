@@ -96,6 +96,26 @@ func Print(n int) {
 }`,
 			complexity: 5,
 		},
+		{
+			name: "case clause simple",
+			code: `package main
+func Print(n int) {
+	if 0 < n && n < 10 {
+		println("between zero and ten")
+	}
+}`,
+			complexity: 3,
+		},
+		{
+			name: "case clause simple",
+			code: `package main
+func Print(n int) {
+	if n < 10 || 10 < n {
+		println("not between zero and ten")
+	}
+}`,
+			complexity: 3,
+		},
 	}
 
 	for _, testcase := range testcases {
