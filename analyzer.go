@@ -22,6 +22,10 @@ var Analyzer = &analysis.Analyzer{
 	Requires: []*analysis.Analyzer{inspect.Analyzer},
 }
 
+func init() {
+	Analyzer.Flags.IntVar(&threshold, "max", 10, "minimum complexity to alert")
+}
+
 func run(pass *analysis.Pass) (interface{}, error) {
 
 	inspect := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
@@ -31,7 +35,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 
 	inspect.Preorder(nodeFilter, func(n ast.Node) {
 		count := complexity.Count(n)
-		if count >= 10 {
+		if count >= threshold {
 			fd := n.(*ast.FuncDecl)
 			pass.Reportf(n.Pos(), "function %s complexity=%d", fd.Name.Name, count)
 		}
