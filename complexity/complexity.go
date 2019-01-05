@@ -11,7 +11,7 @@ func Count(funcNode ast.Node) int {
 		switch n := node.(type) {
 		case *ast.IfStmt:
 			count++
-		case *ast.ForStmt:
+		case *ast.ForStmt, *ast.RangeStmt:
 			count++
 		case *ast.CaseClause:
 			if n.List == nil {

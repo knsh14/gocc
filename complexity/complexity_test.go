@@ -97,7 +97,7 @@ func Print(n int) {
 			complexity: 5,
 		},
 		{
-			name: "case clause simple",
+			name: "condition and",
 			code: `package main
 func Print(n int) {
 	if 0 < n && n < 10 {
@@ -107,7 +107,7 @@ func Print(n int) {
 			complexity: 3,
 		},
 		{
-			name: "case clause simple",
+			name: "condition or",
 			code: `package main
 func Print(n int) {
 	if n < 10 || 10 < n {
@@ -115,6 +115,17 @@ func Print(n int) {
 	}
 }`,
 			complexity: 3,
+		},
+		{
+			name: "range statement",
+			code: `package main
+func Print(n int) {
+	l := []int{n}
+	for i := range l {
+		println(i)
+	}
+}`,
+			complexity: 2,
 		},
 	}
 
