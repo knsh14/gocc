@@ -131,8 +131,6 @@ func Print(n int) {
 
 	for _, testcase := range testcases {
 		t.Run(testcase.name, func(t *testing.T) {
-			// AST を取得する
-			// 詳細は割愛
 			ast := GetFuncNode(t, testcase.code)
 
 			c := Count(ast)

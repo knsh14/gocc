@@ -15,6 +15,7 @@ var (
 	average   bool
 )
 
+// Analyzer does check about cyclomatic complexity
 var Analyzer = &analysis.Analyzer{
 	Name:     "gocc",
 	Doc:      "checks cyclomatic complexity",

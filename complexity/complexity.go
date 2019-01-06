@@ -5,6 +5,7 @@ import (
 	"go/token"
 )
 
+// Count returns complexity of function
 func Count(funcNode ast.Node) int {
 	count := 1
 	ast.Inspect(funcNode, func(node ast.Node) bool {
