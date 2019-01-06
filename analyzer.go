@@ -11,8 +11,6 @@ import (
 
 var (
 	threshold int
-	top       int
-	average   bool
 )
 
 // Analyzer does check about cyclomatic complexity
@@ -24,7 +22,7 @@ var Analyzer = &analysis.Analyzer{
 }
 
 func init() {
-	Analyzer.Flags.IntVar(&threshold, "max", 10, "minimum complexity to alert")
+	Analyzer.Flags.IntVar(&threshold, "over", 10, "minimum complexity to report")
 }
 
 func run(pass *analysis.Pass) (interface{}, error) {
