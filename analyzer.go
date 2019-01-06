@@ -36,7 +36,8 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		count := complexity.Count(n)
 		if count >= threshold {
 			fd := n.(*ast.FuncDecl)
-			pass.Reportf(n.Pos(), "function %s complexity=%d", fd.Name.Name, count)
+			name := getFuncName(fd)
+			pass.Reportf(n.Pos(), "func %s complexity=%d", name, count)
 		}
 	})
 	return nil, nil
