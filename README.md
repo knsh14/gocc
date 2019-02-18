@@ -8,7 +8,7 @@ you can use this analyzer in your analysis tool.
 # Install
 
 ```
-$ go get -u github.com/knsh14/gocc
+$ go get -u github.com/knsh14/gocc/cmd/gocc
 ```
 
 # Usage
