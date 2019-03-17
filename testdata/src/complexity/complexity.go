@@ -4,7 +4,7 @@ func SimpleFunction(n int) {
 	println(n)
 }
 
-func ComplexFunction(n int) { // want `ComplexFunction`
+func ComplexFunction(n int) { // want `func ComplexFunction complexity=10`
 	if n == 0 {
 		println("zero")
 	}
