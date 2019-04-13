@@ -15,12 +15,14 @@ func TestAnalyzerSimple(t *testing.T) {
 	}
 	testdata := analysistest.TestData()
 	res := analysistest.Run(t, testdata, Analyzer, "simple")[0]
-	v := res.Result.(map[ast.Node]int)
+	v, ok := res.Result.(map[ast.Node]int)
+	if !ok {
+		t.Fatalf("type of result must be map[ast.Node]int: %T", res.Result)
+	}
 	if len(v) != len(expects) {
 		t.Fatalf("unexpected complexity num. want=%d, got=%d", len(expects), len(v))
 	}
 
-	count := 0
 	for k := range v {
 		switch n := k.(type) {
 		case *ast.FuncDecl:
@@ -32,6 +34,5 @@ func TestAnalyzerSimple(t *testing.T) {
 				t.Fatalf("unexpected complexity. want=%d, got=%d", expect, v[k])
 			}
 		}
-		count++
 	}
 }
