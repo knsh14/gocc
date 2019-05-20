@@ -5,8 +5,6 @@ import (
 
 	"github.com/knsh14/gocc/complexity"
 	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/inspect"
-	"golang.org/x/tools/go/ast/inspector"
 )
 
 var (
@@ -18,7 +16,7 @@ var Analyzer = &analysis.Analyzer{
 	Name:     "gocc",
 	Doc:      "checks cyclomatic complexity",
 	Run:      run,
-	Requires: []*analysis.Analyzer{inspect.Analyzer},
+	Requires: []*analysis.Analyzer{complexity.Analyzer},
 }
 
 func init() {
@@ -26,19 +24,13 @@ func init() {
 }
 
 func run(pass *analysis.Pass) (interface{}, error) {
-
-	inspect := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
-	nodeFilter := []ast.Node{
-		(*ast.FuncDecl)(nil),
-	}
-
-	inspect.Preorder(nodeFilter, func(n ast.Node) {
-		count := complexity.Count(n)
+	complexities := pass.ResultOf[complexity.Analyzer].(map[ast.Node]int)
+	for n, count := range complexities {
 		if count >= threshold {
 			fd := n.(*ast.FuncDecl)
 			name := getFuncName(fd)
 			pass.Reportf(n.Pos(), "func %s complexity=%d", name, count)
 		}
-	})
+	}
 	return nil, nil
 }
