@@ -12,6 +12,7 @@ import (
 
 var Analyzer = &analysis.Analyzer{
 	Name:       "complexity",
+	Doc:        "pass result of complexity",
 	ResultType: reflect.TypeOf(map[ast.Node]int{}),
 	Requires:   []*analysis.Analyzer{inspect.Analyzer},
 	Run:        run,
