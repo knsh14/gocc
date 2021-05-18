@@ -1,10 +1,11 @@
 package complexity
 
 import (
+	"errors"
+	"fmt"
 	"go/ast"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
@@ -35,7 +36,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		res[n] = count
 	})
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to calc complexity")
+		return nil, fmt.Errorf("failed to calc complexity: %w", err)
 	}
 	return res, nil
 }
